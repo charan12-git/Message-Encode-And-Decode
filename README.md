@@ -25,19 +25,30 @@
 <ul>
   <li>Press Exit to stop the program execution.</li>
 </ul>
-# Working:
+<h2> Working:</h2>
 
 
-<h2>Examples :</h2>
 <p>type command:
-    >python enocde-decode.py
+    >python enocde-decode.py</p>
    
     
 <img src="command_for_encode-decode.png">
 
    <p>The main Interface opens:</p> 
     
-<img src="">
+<img src="userinterface-med.png">
+<h2> Examples:</h2>
 
+ <p>encoding message 1:</p>
     
+<img src="enocding1.png">
+<p>decoding message 1:</p> 
+    
+<img src="decoding1.png">
+<p>encoding message 2</p> 
+    
+<img src="encdoding2.png">
+<p>decoding message 2</p> 
+    
+<img src="decoding2.png">
 </p>
