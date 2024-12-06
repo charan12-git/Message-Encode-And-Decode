@@ -17,7 +17,7 @@
 <h2>Usage :</h2>
  <ul>
   <li>Download my Repository</li>
-  <li>Open your Command Prompt or Terminal and change directory to the folder where all the files are present.</li>
+  <li>Put the code in a folder called Message Encode and Decode.Using cmd or Terminal open the folder</li>
   <li><b>Encoding And Decoding Messages</b> Use Command :</li>
   
       python encode-decode.py
@@ -37,6 +37,8 @@
    <p>The main Interface opens:</p> 
     
 <img src="userinterface-med.png">
+
+<P>The Key must be copied by the user, to decode the message again.</P>
 <h2> Examples:</h2>
 
  <p>encoding message 1:</p>
