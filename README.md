@@ -29,13 +29,13 @@
 
 
 <h2>Examples :</h2>
-<p>
+<p>type command:
     >python enocde-decode.py
    
     
-<img src="">
+<img src="command_for_encode-decode.png">
 
-    
+   <p>The main Interface opens:</p> 
     
 <img src="">
 
