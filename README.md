@@ -14,11 +14,7 @@
   
        pip install base64
 </ul>
-<ul>
- <li>Flask</li>
-  
-       pip install flask
-</ul>
+
 <h2>Usage :</h2>
  <ul>
   <li>Download my Repository</li>
