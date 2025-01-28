@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Encode and Decode</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #000;
+            width: 400px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 200px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        input, select {
+            width: 200px;
+            padding: 5px;
+            margin-left: 10px;
+            border: 1px solid #000;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .reset-btn {
+            background-color: #32CD32;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .exit-btn {
+            background-color: #FF4500;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .result-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #000;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .guide {
+            text-align: left;
+            margin-top: 30px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            font-size: 12px;
+        }
+        .guide h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        .guide ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .guide li {
+            margin: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ENCODE DECODE</h1>
+        
+        <div class="input-group">
+            <label>MESSAGE</label>
+            <input type="text" id="message" required>
+        </div>
+        
+        <div class="input-group">
+            <label>KEY</label>
+            <input type="text" id="key" required>
+        </div>
+        
+        <div class="input-group">
+            <label>MODE(e-encode, d-decode)</label>
+            <input type="text" id="mode" required>
+        </div>
+        
+        <div class="input-group">
+            <button class="result-btn" onclick="process()">RESULT</button>
+            <input type="text" id="result" readonly>
+        </div>
+        
+        <div class="button-group">
+            <button class="reset-btn" onclick="resetForm()">RESET</button>
+            <button class="exit-btn" onclick="exitApp()">EXIT</button>
+        </div>
+        
+        <div class="guide">
+            <h3>Quick Guide:</h3>
+            <ul>
+                <li><strong>To Encode:</strong> Enter message + key, type 'e' in mode</li>
+                <li><strong>To Decode:</strong> Enter encoded text + same key, type 'd' in mode</li>
+                <li><strong>Key Safety:</strong> Remember your key - it's needed for decoding</li>
+                <li><strong>Reset:</strong> Clears all fields for new operation</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function process() {
+            const message = document.getElementById('message').value;
+            const key = document.getElementById('key').value;
+            const mode = document.getElementById('mode').value.toLowerCase();
+            
+            if (!message || !key || !mode) {
+                document.getElementById('result').value = 'Please fill all fields';
+                return;
+            }
+            
+            if (mode !== 'e' && mode !== 'd') {
+                document.getElementById('result').value = 'Mode must be "e" or "d"';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:5000/process', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, key, mode })
+                });
+                
+                const data = await response.json();
+                document.getElementById('result').value = data.result || data.error;
+            } catch (error) {
+                document.getElementById('result').value = 'Error processing request';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('message').value = '';
+            document.getElementById('key').value = '';
+            document.getElementById('mode').value = '';
+            document.getElementById('result').value = '';
+        }
+
+        function exitApp() {
+            window.close();
+        }
+    </script>
+</body>
+</html>
